@@ -9,12 +9,12 @@ import (
 	"time"
 )
 
-func main(){
+func main() {
 	scheduler("./src")
 }
 
 func scheduler(dirPath string) {
-	for range time.Tick(10*time.Second) {
+	for range time.Tick(10 * time.Second) {
 		files, err := searchPcapFiles(dirPath)
 		if err != nil {
 			fmt.Println(err)
@@ -46,6 +46,7 @@ func compress(dirPath, pcapFilePath string) (string, error) {
 	if err != nil {
 		return "", err
 	}
+	defer dist.Close()
 	compData, err := gzip.NewWriterLevel(dist, gzip.BestCompression)
 	if err != nil {
 		return "", err
