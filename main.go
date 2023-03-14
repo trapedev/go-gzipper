@@ -26,6 +26,9 @@ func scheduler(dirPath string) {
 				fmt.Println(err)
 				continue
 			}
+			if err := os.Remove(dirPath+"/"+target); err != nil {
+				fmt.Println(err)
+			}
 		} else {
 			continue
 		}
